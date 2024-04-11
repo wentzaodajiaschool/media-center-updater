@@ -59,8 +59,7 @@ $(document).ready(function () {
         $("#sheetTable").DataTable().draw(); // 重新繪製表格以應用過濾
     });
 
-    //  EVENT  圖片上傳功能 /////
-    //當點擊加號按鈕時，觸發隱藏的文件輸入的點擊事件
+    //  EVENT  圖片上傳功能 //當點擊加號按鈕時，觸發隱藏的文件輸入的點擊事件
     $("#triggerUploadButton").on("click", function () {
         $("#fileInput").click();
     });
