@@ -97,8 +97,8 @@ $(document).ready(function () {
             .then((result) => {
                 if (result.success) {
                     $("#coverLinkField").val(result.data.link);
-                    console.log("Image uploaded: " + result.data.link)
-                    console.log( $("#coverLinkField").val());
+                    console.log("Image uploaded: " + result.data.link);
+                    console.log($("#coverLinkField").val());
                     // 顯示圖片
                     $("#upload-display").removeAttr("hidden");
                     $("#upload-display").html(`
@@ -133,7 +133,7 @@ $(document).ready(function () {
         });
     }
 
-    // 初始化 DataTables
+    // FUNCTION  初始化 DataTables
     var table = $("#sheetTable").DataTable({
         ajax: {
             url: googleScriptURL + "?action=read",
@@ -141,6 +141,34 @@ $(document).ready(function () {
                 $("#loadStatus")
                     .html('<i class="fas fa-spinner fa-spin"></i> 載入中...')
                     .show();
+            },
+            dataSrc: function (json) {
+                var classesSet = new Set(); // 使用Set來存儲班級數據保持唯一性
+                var categoriesSet = new Set(); // 使用Set來存儲類別數據保持唯一性
+
+                json.data.forEach(function (item) {
+                    classesSet.add(item.classes); // 將班級數據添加到Set中
+                    categoriesSet.add(item.category); // 將類別數據添加到Set中
+                });
+
+                // 將班級Set轉換為數組並排序，然後生成HTML選項
+                var classesOptions = Array.from(classesSet).sort();
+                var classOptionsHTML = "";
+                classesOptions.forEach(function (cls) {
+                    classOptionsHTML += '<option value="' + cls + '">';
+                });
+
+                // 將類別Set轉換為數組並排序，然後生成HTML選項
+                var categoriesOptions = Array.from(categoriesSet).sort();
+                var categoryOptionsHTML = "";
+                categoriesOptions.forEach(function (category) {
+                    categoryOptionsHTML += '<option value="' + category + '">';
+                });
+
+                $("#classOptions").html(classOptionsHTML); // 將班級選項添加到下拉選單中
+                $("#categoryOptions").html(categoryOptionsHTML); // 將類別選項添加到下拉選單中
+
+                return json.data; // 返回數據以供DataTable使用
             },
         },
         initComplete: function (settings, json) {
@@ -224,7 +252,7 @@ $(document).ready(function () {
             $(".dataTables_paginate").addClass("text-center"); // 確保分頁按鈕容器是置中的
         },
         responsive: true, // 啟用響應式設計
-        className: 'compact'
+        className: "compact",
     });
 
     //  EVENT  處理表格中checkbox的事件
@@ -365,19 +393,21 @@ $(document).ready(function () {
     function checkDataComplete() {
         // 定義一個變量，用於標記表單數據是否有效
         var isValid = true;
-    
+
         // 移除先前的錯誤提示
         $(".form-control").removeClass("input-error"); // 假設所有輸入欄位都使用了 form-control 類
-    
+
         // 逐一檢查每個字段是否為空，除了 openField
-        $("#titleField , #schoolField, #categoryField, #playLinkField, #coverLinkField").each(function() {
+        $(
+            "#titleField , #schoolField, #categoryField, #playLinkField, #coverLinkField"
+        ).each(function () {
             if (!$(this).val()) {
                 // 如果字段為空，添加錯誤提示樣式並將 isValid 設置為 false
                 $(this).addClass("input-error");
                 isValid = false;
             }
         });
-    
+
         if (!isValid) {
             // 如果有任何一個字段（除了 openField）為空，則顯示警告框並終止函數執行
             alert("除了「開放」外的所有字段都不能為空！");
@@ -385,7 +415,6 @@ $(document).ready(function () {
         }
         return true;
     }
-    
 
     //  FUNCTION  設置 Modal 為「新增模式」
     function setModalToAddMode() {

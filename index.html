@@ -65,7 +65,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="classField" class="form-label">班級</label>
-                                    <input type="text" class="form-control" id="classField" placeholder="班級">
+                                    <input type="text" class="form-control" id="classField" list="classOptions" placeholder="班級">
+                                    <datalist id="classOptions">
+                                        <!-- 動態添加班級 -->
+                                    </datalist>
                                 </div>
                                 <div class="mb-3">
                                     <label for="schoolField" class="form-label">學校</label>
@@ -76,7 +79,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="categoryField" class="form-label">類別</label>
-                                    <input type="text" class="form-control" id="categoryField" placeholder="類別">
+                                    <input type="text" class="form-control" id="categoryField" list="categoryOptions" placeholder="類別">
+                                    <datalist id="categoryOptions">
+                                        <!-- 選項將通過JavaScript動態添加 -->
+                                    </datalist>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
