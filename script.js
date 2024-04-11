@@ -96,7 +96,7 @@ $(document).ready(function () {
             .then((response) => response.json())
             .then((result) => {
                 if (result.success) {
-                    $("#imageLinkField").val(result.data.link);
+                    $("#coverLinkField").val(result.data.link);
                     // 顯示圖片
                     $("#upload-display").removeAttr("hidden");
                     $("#upload-display").html(`
@@ -281,7 +281,7 @@ $(document).ready(function () {
         // 顯示圖片
         $("#upload-display").removeAttr("hidden");
         $("#upload-display").html(`
-            <img src="${data.coverLink}" style="max-width: 100%; height: auto;">
+            <img src="${data.coverLink}" style="max-width: 100%; height: auto; object-fit: cover; object-position: center;">
         `);
         $("#playLinkField").val(data.playLink); // 新增播放連結欄位填充
         // 更新啟用狀態的處理
