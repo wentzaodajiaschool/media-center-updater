@@ -97,6 +97,8 @@ $(document).ready(function () {
             .then((result) => {
                 if (result.success) {
                     $("#coverLinkField").val(result.data.link);
+                    console.log("Image uploaded: " + result.data.link)
+                    console.log( $("#coverLinkField").val());
                     // 顯示圖片
                     $("#upload-display").removeAttr("hidden");
                     $("#upload-display").html(`
