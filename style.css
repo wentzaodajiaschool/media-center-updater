@@ -1,0 +1,66 @@
+td {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* .dataTables_wrapper .dataTables_paginate  {
+    float: none;
+} */
+
+@media (max-width: 768px) {
+    th{
+        font-size: 3px;
+    }
+    .dt-center {
+        font-size: 14px;
+    }
+    .container {
+        width: 100%;
+    }
+}
+
+.floating-div {
+    position: fixed; /* 使用固定定位 */
+    top: 20px; /* 距離視窗頂部的距離 */
+    right: 20px; /* 距離視窗右側的距離 */
+    z-index: 1000; /* 確保漂浮的 div 能夠顯示在其他內容之上 */
+    text-align: center; /* 水平居中 */
+    vertical-align: middle; /* 垂直居中 */
+}
+.table {
+    border-top: 1px solid #dee2e6; /* Bootstrap 預設的邊界樣式 */
+}
+
+.dataTables_filter {
+    margin-bottom: 20px; /* 調整這個值來增加你想要的間距大小 */
+}
+
+#sheetTable th, #sheetTable td {
+    text-align: center; /* 水平居中 */
+    vertical-align: middle; /* 垂直居中 */
+}
+
+.input-error {
+    border-color: red !important;
+}
+
+#upload-display img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+/* 調整 DataTables 表格的字體大小 */
+.dataTables_wrapper .dataTable td,
+.dataTables_wrapper .dataTable th {
+    font-size: 12px; /* 將字體大小調整為 12px */
+}
+
+/* 調整表格內邊距 */
+.dataTables_wrapper .dataTable td {
+    padding: 4px; /* 調整內邊距為 4px */
+}
